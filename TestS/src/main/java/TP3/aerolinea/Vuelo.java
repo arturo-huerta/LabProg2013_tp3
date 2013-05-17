@@ -23,11 +23,50 @@ public class Vuelo {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long codigoVuelo;
     
+    // tal vez sea mejor tener una lista de precios, segun el tipo de ticket?
+    // segun el tipo de clase del asiento, como minimo
+    // ej: private List<Double> listaPrecios = new ArrayList();
+    // una lista donde se pueden guardar los posibles precios de cada vuelo
     private Double precio;
     
     @OneToMany
-    @JoinTable(name = "vuelo_lista")
-    List<Tickets> vueloLista = new ArrayList();
+    @JoinTable(name = "tickets_lista")
+    private List<Tickets> ticketsLista = new ArrayList();
+
+    /**
+     * @return the codigoVuelo
+     */
+    public Long getCodigoVuelo() {
+        return codigoVuelo;
+    }
+
+    /**
+     * @return the precio
+     */
+    public Double getPrecio() {
+        return precio;
+    }
+
+    /**
+     * @param precio the precio to set
+     */
+    public void setPrecio(Double precio) {
+        this.precio = precio;
+    }
+
+    /**
+     * @return the vueloLista
+     */
+    public List<Tickets> getTicketsLista() {
+        return ticketsLista;
+    }
+
+    /**
+     * @param vueloLista the vueloLista to set
+     */
+    public void setTicketsLista(List<Tickets> ticketsLista) {
+        this.ticketsLista = ticketsLista;
+    }
     
     
 }

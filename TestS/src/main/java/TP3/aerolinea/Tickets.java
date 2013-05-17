@@ -15,6 +15,20 @@ import javax.persistence.Id;
 public class Tickets {
     @Id
     private long numeroTicket;
+
+    /**
+     * @return the numeroTicket
+     */
+    public long getNumeroTicket() {
+        return numeroTicket;
+    }
+
+    /**
+     * @param numeroTicket the numeroTicket to set
+     */
+    public void setNumeroTicket(long numeroTicket) {
+        this.numeroTicket = numeroTicket;
+    }
     
     
 }
