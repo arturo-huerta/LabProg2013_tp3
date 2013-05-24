@@ -6,6 +6,7 @@ package TP3.aerolinea;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,10 +23,10 @@ public class Pasajero {
     // id es la clave primaria
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique=true)
     private Long id;
     
     // otros campos
-    private Integer version;
     private Long DNI;
     private String Apellido;
     private String Nombre;
@@ -35,6 +36,11 @@ public class Pasajero {
     @OneToMany
     @JoinTable(name = "ticket_lista")
     private List<Tickets> ticketLista = new ArrayList();
+    
+    // relacion 1 a muchos: 1 pasajero puede estar en * vuelos
+    @OneToMany
+    @JoinTable(name = "vuelos_pasajero_lista")
+    private List<Vuelo> vuelosPasajeroLista = new ArrayList();
 
     /**
      * @return the id
@@ -48,20 +54,6 @@ public class Pasajero {
      */
     public void setId(Long id) {
         this.id = id;
-    }
-
-    /**
-     * @return the version
-     */
-    public Integer getVersion() {
-        return version;
-    }
-
-    /**
-     * @param version the version to set
-     */
-    public void setVersion(Integer version) {
-        this.version = version;
     }
 
     /**

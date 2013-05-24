@@ -5,10 +5,10 @@
 package TP3.aerolinea;
 
 import java.util.ArrayList;
+import javax.persistence.Persistence;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-        
+
 /**
  *
  * @author tincho
@@ -31,7 +31,7 @@ public class test {
         // aceptar (persist) y aplicar los cambios (commit) en la base de datos
         em.persist(p);
         em.getTransaction().commit();
-        
+
         //transaccion para generar un nuevo aeropuerto
         em.getTransaction().begin();
         // generar instancia de aeropuerto para asignar datos
@@ -48,14 +48,31 @@ public class test {
         // aceptar (persist) y aplicar los cambios (commit) en la base de datos
         em.persist(a);
         em.getTransaction().commit();
-        
+
         // transaccion para generar un nuevo vuelo
         em.getTransaction().begin();
         // generar instancia de vuelo para asignar al aeropuerto en la db
         Vuelo v = new Vuelo();
-        // obtener datos a asignar del input del usuario (
-        v.setTicketsLista(null);
-        
+        // obtener datos a asignar del input del usuario (tickets vendidos,
+        // lista de precios)
+        v.setTicketsLista(new ArrayList());
+        v.setListaPrecios(new ArrayList<Double>());
+
+        em.persist(v);
+        em.getTransaction().commit();
+
+        // transaccion para generar un nuevo ticket
+        em.getTransaction().begin();
+
+        Tickets t = new Tickets();
+
+        // numero de ticket obtenido del input del usuario
+        t.setNumeroTicket(0);
+        // asignar el pasajero que compro dicho ticket
+        t.setPasajero(new Pasajero());
+
+        em.persist(t);
+        em.getTransaction().commit();
 
     }
 }

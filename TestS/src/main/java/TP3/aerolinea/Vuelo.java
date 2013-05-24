@@ -6,6 +6,7 @@ package TP3.aerolinea;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,16 +20,14 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Vuelo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique=true)
     private Long codigoVuelo;
-    
-    // tal vez sea mejor tener una lista de precios, segun el tipo de ticket?
-    // segun el tipo de clase del asiento, como minimo
-    // ej: private List<Double> listaPrecios = new ArrayList();
-    // una lista donde se pueden guardar los posibles precios de cada vuelo
-    private Double precio;
-    
+    // una lista donde se pueden guardar los posibles precios de los tickets
+    // por ej, segun clase del asiento
+    private List<Double> listaPrecios = new ArrayList();
     @OneToMany
     @JoinTable(name = "tickets_lista")
     private List<Tickets> ticketsLista = new ArrayList();
@@ -38,20 +37,6 @@ public class Vuelo {
      */
     public Long getCodigoVuelo() {
         return codigoVuelo;
-    }
-
-    /**
-     * @return the precio
-     */
-    public Double getPrecio() {
-        return precio;
-    }
-
-    /**
-     * @param precio the precio to set
-     */
-    public void setPrecio(Double precio) {
-        this.precio = precio;
     }
 
     /**
@@ -67,6 +52,18 @@ public class Vuelo {
     public void setTicketsLista(List<Tickets> ticketsLista) {
         this.ticketsLista = ticketsLista;
     }
-    
-    
+
+    /**
+     * @return the listaPrecios
+     */
+    public List<Double> getListaPrecios() {
+        return listaPrecios;
+    }
+
+    /**
+     * @param listaPrecios the listaPrecios to set
+     */
+    public void setListaPrecios(List<Double> listaPrecios) {
+        this.listaPrecios = listaPrecios;
+    }
 }
