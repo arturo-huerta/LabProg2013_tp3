@@ -8,8 +8,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -20,13 +18,13 @@ import javax.persistence.OneToMany;
 @Entity
 public class Pasajero implements Serializable {
     // id es la clave primaria
+
     @Id
     private Long DNI;
     // otros campos
     private Integer version;
     private String Apellido;
     private String Nombre;
-    
     // relacion 1 a muchos: 1 pasajero tiene * tickets, los tickets
     // se almacenan en un array list
     @OneToMany
@@ -105,5 +103,4 @@ public class Pasajero implements Serializable {
     public void setTicketLista(List<Tickets> ticketLista) {
         this.ticketLista = ticketLista;
     }
-
 }

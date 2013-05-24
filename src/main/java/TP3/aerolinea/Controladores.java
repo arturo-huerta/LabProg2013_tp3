@@ -18,12 +18,13 @@ import javax.persistence.Persistence;
 public class Controladores {
 
     private static Controladores instancia = new Controladores();
-    private static EntityManagerFactory emf = Persistence.createEntityManagerFactory("TP3_Aerolinea");
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("TP3_Aerolinea");
     private static AeropuertoJpaController ajc = new AeropuertoJpaController(emf);
     private static PasajeroJpaController pjc = new PasajeroJpaController(emf);
     private static TicketsJpaController tjc = new TicketsJpaController(emf);
     private static VueloJpaController vjc = new VueloJpaController(emf);
     private static Vista vista = new Vista();
+
     /**
      * @return the ajc
      */
@@ -58,6 +59,7 @@ public class Controladores {
     public static Vista getVista() {
         return vista;
     }
+
     private Controladores() {
     }
 

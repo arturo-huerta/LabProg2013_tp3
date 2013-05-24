@@ -34,9 +34,9 @@ public class Vista {
             List<Tickets> lista = pasajero.getTicketLista();
             for (int i = 0; i < lista.size(); i++) {
                 Tickets t = lista.get(i);
-
-                Object denuevo[] = {t.getNumeroTicket(), t.getCodigoVuelo(), t.getCodigoAeropuerto()};
-                temp.addRow(denuevo);
+                Vuelo v = Controladores.getVjc().findVuelo(t.getCodigoVuelo());
+                Object fila[] = {t.getNumeroTicket(), t.getCodigoVuelo(), v.getCodigoAeropuertoPartida(),v.getCodigoAeropuertoLlegada()};
+                temp.addRow(fila);
             }
 
         } catch (ArrayIndexOutOfBoundsException e) {

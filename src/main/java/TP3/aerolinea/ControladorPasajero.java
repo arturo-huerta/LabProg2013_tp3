@@ -12,7 +12,6 @@ import javax.swing.JTextField;
  */
 public class ControladorPasajero {
 
-
     public void crear(JTextField ape, JTextField nom, JTextField dni) {
         Pasajero pasajero = new Pasajero();
         pasajero.setApellido(ape.getText());
@@ -20,5 +19,4 @@ public class ControladorPasajero {
         pasajero.setDNI(Long.parseLong(dni.getText()));
         Controladores.getPjc().create(pasajero);
     }
-    
 }

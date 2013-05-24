@@ -41,9 +41,7 @@ public class test {
         // obtener del input del usuario el pais y asignarlo
         a.setPais("Input pais");
         // lista de vuelos que entran
-        a.setEntradaLista(new ArrayList());
-        // lista de vuelos que salen
-        a.setSalidaLista(new ArrayList());
+        a.setListaVuelos(new ArrayList());
         // el codigo del aeropuerto es generado automaticamente
         // aceptar (persist) y aplicar los cambios (commit) en la base de datos
         em.persist(a);

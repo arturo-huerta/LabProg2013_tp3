@@ -5,11 +5,8 @@
 package TP3.aerolinea;
 
 import TP3.aerolinea.controller.exceptions.NonexistentEntityException;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.persistence.Query;
-import javax.swing.JTextField;
 
 /**
  *
@@ -18,7 +15,7 @@ import javax.swing.JTextField;
 public class Aplicacion extends javax.swing.JFrame {
 
     /**
-     * Creates new form pepe
+     * Creates new form Aplicacion
      */
     public Aplicacion() {
         initComponents();
@@ -76,11 +73,52 @@ public class Aplicacion extends javax.swing.JFrame {
         jButtonPEliminarDatos = new javax.swing.JButton();
         jTabbedPaneTickets = new javax.swing.JTabbedPane();
         jPanelTCrear = new javax.swing.JPanel();
+        jLabelTCCodigoVuelo = new javax.swing.JLabel();
+        jLabelTCDNI = new javax.swing.JLabel();
+        jLabelTCNumeroTicket = new javax.swing.JLabel();
+        jTextFieldTCCodigoVuelo = new javax.swing.JTextField();
+        jTextFieldTCDNI = new javax.swing.JTextField();
+        jTextFieldTCNumeroTicket = new javax.swing.JTextField();
+        jButtonTCCrear = new javax.swing.JButton();
+        jButtonTCLimpiar = new javax.swing.JButton();
         jPanelTLeer = new javax.swing.JPanel();
+        jLabelTLBuscar = new javax.swing.JLabel();
+        jTextFieldTLNumeroTicketBusqueda = new javax.swing.JTextField();
+        jButtonTLBuscar = new javax.swing.JButton();
+        jButtonTLLimpiar = new javax.swing.JButton();
+        jLabelTLCodigoVuelo = new javax.swing.JLabel();
+        jTextFieldTLCodigoVuelo = new javax.swing.JTextField();
+        jLabelTLDNI = new javax.swing.JLabel();
+        jTextFieldTLDNI = new javax.swing.JTextField();
+        jLabelTLNumeroTicket = new javax.swing.JLabel();
+        jTextFieldTLNumeroTicketResultado = new javax.swing.JTextField();
         jPanelTModificar = new javax.swing.JPanel();
+        jLabelTMBuscar = new javax.swing.JLabel();
+        jLabelTMCodigoVuelo = new javax.swing.JLabel();
+        jLabelTMDNI = new javax.swing.JLabel();
+        jLabelTMNumeroTicket = new javax.swing.JLabel();
+        jTextFieldTMCodigoVuelo = new javax.swing.JTextField();
+        jTextFieldTMDNI = new javax.swing.JTextField();
+        jTextFieldTMNumeroTicket = new javax.swing.JTextField();
+        jTextFieldTMBuscar = new javax.swing.JTextField();
+        jButtonTMBuscar = new javax.swing.JButton();
+        jButtonTMModificar = new javax.swing.JButton();
         jPanelTEliminar = new javax.swing.JPanel();
+        jLabelTENumeroTicket = new javax.swing.JLabel();
+        jTextFieldTENumeroTicket = new javax.swing.JTextField();
+        jButtonTEEliminar = new javax.swing.JButton();
         jTabbedPaneVuelo = new javax.swing.JTabbedPane();
         jPanelVCrear = new javax.swing.JPanel();
+        jLabelVCCodigoVuelo = new javax.swing.JLabel();
+        jLabelVCCodigoAeropuertoPartida = new javax.swing.JLabel();
+        jLabelVCCodigoAeropuertoLlegada = new javax.swing.JLabel();
+        jLabelVCPrecio = new javax.swing.JLabel();
+        jTextFieldVCCodigoVuelo = new javax.swing.JTextField();
+        jTextFieldVCCodigoAeropuertoPartida = new javax.swing.JTextField();
+        jTextFieldVCAeropuertoLlegada = new javax.swing.JTextField();
+        jTextFieldVCPrecio = new javax.swing.JTextField();
+        jButtonVCCrear = new javax.swing.JButton();
+        jButtonVCLimpiar = new javax.swing.JButton();
         jPanelVLeer = new javax.swing.JPanel();
         jPanelVModificar = new javax.swing.JPanel();
         jPanelVEliminar = new javax.swing.JPanel();
@@ -92,12 +130,6 @@ public class Aplicacion extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Gestor de Aerolíneas");
-
-        jTextFieldPApellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPApellidoActionPerformed(evt);
-            }
-        });
 
         jButtonPasajeroLimpiar.setText("Limpiar");
         jButtonPasajeroLimpiar.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +175,7 @@ public class Aplicacion extends javax.swing.JFrame {
                                 .addComponent(jTextFieldPDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jTextFieldPCrearLayout.createSequentialGroup()
                                 .addComponent(jLabelPCApe, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 245, Short.MAX_VALUE)
                                 .addComponent(jTextFieldPApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(36, 36, 36))))
         );
@@ -175,13 +207,13 @@ public class Aplicacion extends javax.swing.JFrame {
 
         jTablePLTickets.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "N°Ticket", "Codigo Vuelo", "Codigo Aeropuerto"
+                "N°Ticket", "Codigo Vuelo", "Aeropuerto Partida", "Aeropuerto Destino"
             }
         ));
         jScrollPane1.setViewportView(jTablePLTickets);
@@ -236,7 +268,7 @@ public class Aplicacion extends javax.swing.JFrame {
                     .addComponent(jTextFieldPLnombre))
                 .addGroup(jPanelPLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelPLeerLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
                         .addComponent(jLabelPLBuscar)
                         .addGap(76, 76, 76))
                     .addGroup(jPanelPLeerLayout.createSequentialGroup()
@@ -337,7 +369,7 @@ public class Aplicacion extends javax.swing.JFrame {
                     .addGroup(jPanelPModificarLayout.createSequentialGroup()
                         .addGap(186, 186, 186)
                         .addComponent(jButtonPMGuardar)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         jPanelPModificarLayout.setVerticalGroup(
             jPanelPModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -386,96 +418,328 @@ public class Aplicacion extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabelPEDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldPEDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(203, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPEliminarLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButtonPEliminarDatos)
-                .addGap(18, 18, 18)
-                .addComponent(jButtonPELimpiar)
-                .addContainerGap())
+                .addGroup(jPanelPEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelPEliminarLayout.createSequentialGroup()
+                        .addComponent(jButtonPEliminarDatos)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButtonPELimpiar))
+                    .addComponent(jTextFieldPEDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(297, Short.MAX_VALUE))
         );
         jPanelPEliminarLayout.setVerticalGroup(
             jPanelPEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPEliminarLayout.createSequentialGroup()
-                .addGap(53, 53, 53)
+                .addContainerGap()
                 .addGroup(jPanelPEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldPEDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelPEDNI))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 283, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelPEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonPELimpiar)
                     .addComponent(jButtonPEliminarDatos))
-                .addContainerGap())
+                .addContainerGap(330, Short.MAX_VALUE))
         );
 
         jTabbedPanePasajero.addTab("Eliminar", jPanelPEliminar);
 
         jTabbedPaneContainer.addTab("Pasajero", jTabbedPanePasajero);
 
+        jLabelTCCodigoVuelo.setText("Código de Vuelo");
+
+        jLabelTCDNI.setText("DNI de pasajero");
+
+        jLabelTCNumeroTicket.setText("Número de Ticket");
+
+        jButtonTCCrear.setText("Crear");
+
+        jButtonTCLimpiar.setText("Limpiar");
+
         javax.swing.GroupLayout jPanelTCrearLayout = new javax.swing.GroupLayout(jPanelTCrear);
         jPanelTCrear.setLayout(jPanelTCrearLayout);
         jPanelTCrearLayout.setHorizontalGroup(
             jPanelTCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 466, Short.MAX_VALUE)
+            .addGroup(jPanelTCrearLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelTCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelTCrearLayout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(jButtonTCCrear)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonTCLimpiar)
+                        .addGap(242, 242, 242))
+                    .addGroup(jPanelTCrearLayout.createSequentialGroup()
+                        .addGroup(jPanelTCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                            .addComponent(jLabelTCNumeroTicket, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                            .addComponent(jLabelTCCodigoVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelTCDNI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelTCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldTCCodigoVuelo)
+                            .addComponent(jTextFieldTCDNI)
+                            .addComponent(jTextFieldTCNumeroTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(145, 145, 145))))
         );
         jPanelTCrearLayout.setVerticalGroup(
             jPanelTCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jPanelTCrearLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelTCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTCCodigoVuelo)
+                    .addComponent(jTextFieldTCCodigoVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelTCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTCDNI)
+                    .addComponent(jTextFieldTCDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelTCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTCNumeroTicket)
+                    .addComponent(jTextFieldTCNumeroTicket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelTCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonTCCrear)
+                    .addComponent(jButtonTCLimpiar))
+                .addContainerGap(266, Short.MAX_VALUE))
         );
 
         jTabbedPaneTickets.addTab("Crear", jPanelTCrear);
+
+        jLabelTLBuscar.setText("Buscar");
+
+        jTextFieldTLNumeroTicketBusqueda.setText("Ingresar número de ticket");
+
+        jButtonTLBuscar.setText("Buscar");
+
+        jButtonTLLimpiar.setText("Limpiar");
+
+        jLabelTLCodigoVuelo.setText("Código de Vuelo");
+
+        jTextFieldTLCodigoVuelo.setEditable(false);
+
+        jLabelTLDNI.setText("DNI de Pasajero");
+
+        jTextFieldTLDNI.setEditable(false);
+
+        jLabelTLNumeroTicket.setText("Número de Ticket");
+
+        jTextFieldTLNumeroTicketResultado.setEditable(false);
 
         javax.swing.GroupLayout jPanelTLeerLayout = new javax.swing.GroupLayout(jPanelTLeer);
         jPanelTLeer.setLayout(jPanelTLeerLayout);
         jPanelTLeerLayout.setHorizontalGroup(
             jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 466, Short.MAX_VALUE)
+            .addGroup(jPanelTLeerLayout.createSequentialGroup()
+                .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelTLeerLayout.createSequentialGroup()
+                        .addGap(142, 142, 142)
+                        .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTLeerLayout.createSequentialGroup()
+                                .addComponent(jButtonTLBuscar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonTLLimpiar)
+                                .addGap(28, 28, 28))
+                            .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextFieldTLNumeroTicketBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTLeerLayout.createSequentialGroup()
+                                    .addComponent(jLabelTLBuscar)
+                                    .addGap(65, 65, 65)))))
+                    .addGroup(jPanelTLeerLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabelTLNumeroTicket, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
+                            .addComponent(jLabelTLDNI, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelTLCodigoVuelo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextFieldTLCodigoVuelo)
+                            .addComponent(jTextFieldTLDNI)
+                            .addComponent(jTextFieldTLNumeroTicketResultado, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))))
+                .addContainerGap(189, Short.MAX_VALUE))
         );
         jPanelTLeerLayout.setVerticalGroup(
             jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jPanelTLeerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelTLBuscar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextFieldTLNumeroTicketBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonTLBuscar)
+                    .addComponent(jButtonTLLimpiar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTLCodigoVuelo)
+                    .addComponent(jTextFieldTLCodigoVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTLDNI)
+                    .addComponent(jTextFieldTLDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTLNumeroTicket)
+                    .addComponent(jTextFieldTLNumeroTicketResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(212, Short.MAX_VALUE))
         );
 
         jTabbedPaneTickets.addTab("Leer", jPanelTLeer);
+
+        jLabelTMBuscar.setText("Buscar número de ticket");
+
+        jLabelTMCodigoVuelo.setText("Código de Vuelo");
+
+        jLabelTMDNI.setText("DNI de Pasajero");
+
+        jLabelTMNumeroTicket.setText("Número de Ticket");
+
+        jTextFieldTMNumeroTicket.setEditable(false);
+
+        jButtonTMBuscar.setText("Buscar");
+
+        jButtonTMModificar.setText("Modificar");
 
         javax.swing.GroupLayout jPanelTModificarLayout = new javax.swing.GroupLayout(jPanelTModificar);
         jPanelTModificar.setLayout(jPanelTModificarLayout);
         jPanelTModificarLayout.setHorizontalGroup(
             jPanelTModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 466, Short.MAX_VALUE)
+            .addGroup(jPanelTModificarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelTModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabelTMCodigoVuelo)
+                    .addComponent(jLabelTMDNI)
+                    .addComponent(jLabelTMNumeroTicket)
+                    .addComponent(jLabelTMBuscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelTModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonTMModificar)
+                    .addComponent(jButtonTMBuscar)
+                    .addGroup(jPanelTModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextFieldTMCodigoVuelo)
+                        .addComponent(jTextFieldTMDNI)
+                        .addComponent(jTextFieldTMNumeroTicket)
+                        .addComponent(jTextFieldTMBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(177, Short.MAX_VALUE))
         );
         jPanelTModificarLayout.setVerticalGroup(
             jPanelTModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jPanelTModificarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelTModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTMBuscar)
+                    .addComponent(jTextFieldTMBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonTMBuscar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelTModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTMCodigoVuelo)
+                    .addComponent(jTextFieldTMCodigoVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelTModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTMDNI)
+                    .addComponent(jTextFieldTMDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelTModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTMNumeroTicket)
+                    .addComponent(jTextFieldTMNumeroTicket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonTMModificar)
+                .addContainerGap(202, Short.MAX_VALUE))
         );
 
         jTabbedPaneTickets.addTab("Modificar", jPanelTModificar);
+
+        jLabelTENumeroTicket.setText("Número de Ticket");
+
+        jButtonTEEliminar.setText("Eliminar");
 
         javax.swing.GroupLayout jPanelTEliminarLayout = new javax.swing.GroupLayout(jPanelTEliminar);
         jPanelTEliminar.setLayout(jPanelTEliminarLayout);
         jPanelTEliminarLayout.setHorizontalGroup(
             jPanelTEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 466, Short.MAX_VALUE)
+            .addGroup(jPanelTEliminarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabelTENumeroTicket)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelTEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonTEEliminar)
+                    .addComponent(jTextFieldTENumeroTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(219, Short.MAX_VALUE))
         );
         jPanelTEliminarLayout.setVerticalGroup(
             jPanelTEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jPanelTEliminarLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelTEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTENumeroTicket)
+                    .addComponent(jTextFieldTENumeroTicket, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonTEEliminar)
+                .addContainerGap(330, Short.MAX_VALUE))
         );
 
         jTabbedPaneTickets.addTab("Eliminar", jPanelTEliminar);
 
         jTabbedPaneContainer.addTab("Ticket", jTabbedPaneTickets);
 
+        jLabelVCCodigoVuelo.setText("Código de Vuelo");
+
+        jLabelVCCodigoAeropuertoPartida.setText("Código del Aeropuerto de Partida");
+
+        jLabelVCCodigoAeropuertoLlegada.setText("Código del Aeropuerto de Llegada");
+
+        jLabelVCPrecio.setText("Precio del Ticket");
+
+        jButtonVCCrear.setText("Crear");
+
+        jButtonVCLimpiar.setText("Limpiar");
+
         javax.swing.GroupLayout jPanelVCrearLayout = new javax.swing.GroupLayout(jPanelVCrear);
         jPanelVCrear.setLayout(jPanelVCrearLayout);
         jPanelVCrearLayout.setHorizontalGroup(
             jPanelVCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 466, Short.MAX_VALUE)
+            .addGroup(jPanelVCrearLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelVCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabelVCCodigoAeropuertoLlegada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelVCPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelVCCodigoAeropuertoPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabelVCCodigoVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelVCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelVCrearLayout.createSequentialGroup()
+                        .addComponent(jButtonVCCrear)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonVCLimpiar))
+                    .addGroup(jPanelVCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextFieldVCCodigoVuelo)
+                        .addComponent(jTextFieldVCCodigoAeropuertoPartida)
+                        .addComponent(jTextFieldVCAeropuertoLlegada)
+                        .addComponent(jTextFieldVCPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         jPanelVCrearLayout.setVerticalGroup(
             jPanelVCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(jPanelVCrearLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelVCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelVCCodigoVuelo)
+                    .addComponent(jTextFieldVCCodigoVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelVCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelVCCodigoAeropuertoPartida)
+                    .addComponent(jTextFieldVCCodigoAeropuertoPartida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelVCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelVCCodigoAeropuertoLlegada)
+                    .addComponent(jTextFieldVCAeropuertoLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelVCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelVCPrecio)
+                    .addComponent(jTextFieldVCPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelVCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonVCCrear)
+                    .addComponent(jButtonVCLimpiar))
+                .addContainerGap(234, Short.MAX_VALUE))
         );
 
         jTabbedPaneVuelo.addTab("Crear", jPanelVCrear);
@@ -484,7 +748,7 @@ public class Aplicacion extends javax.swing.JFrame {
         jPanelVLeer.setLayout(jPanelVLeerLayout);
         jPanelVLeerLayout.setHorizontalGroup(
             jPanelVLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 466, Short.MAX_VALUE)
+            .addGap(0, 560, Short.MAX_VALUE)
         );
         jPanelVLeerLayout.setVerticalGroup(
             jPanelVLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -497,7 +761,7 @@ public class Aplicacion extends javax.swing.JFrame {
         jPanelVModificar.setLayout(jPanelVModificarLayout);
         jPanelVModificarLayout.setHorizontalGroup(
             jPanelVModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 466, Short.MAX_VALUE)
+            .addGap(0, 560, Short.MAX_VALUE)
         );
         jPanelVModificarLayout.setVerticalGroup(
             jPanelVModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -510,7 +774,7 @@ public class Aplicacion extends javax.swing.JFrame {
         jPanelVEliminar.setLayout(jPanelVEliminarLayout);
         jPanelVEliminarLayout.setHorizontalGroup(
             jPanelVEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 466, Short.MAX_VALUE)
+            .addGap(0, 560, Short.MAX_VALUE)
         );
         jPanelVEliminarLayout.setVerticalGroup(
             jPanelVEliminarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -525,7 +789,7 @@ public class Aplicacion extends javax.swing.JFrame {
         jPanelACrear1.setLayout(jPanelACrear1Layout);
         jPanelACrear1Layout.setHorizontalGroup(
             jPanelACrear1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 466, Short.MAX_VALUE)
+            .addGap(0, 560, Short.MAX_VALUE)
         );
         jPanelACrear1Layout.setVerticalGroup(
             jPanelACrear1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -538,7 +802,7 @@ public class Aplicacion extends javax.swing.JFrame {
         jPanelALeer1.setLayout(jPanelALeer1Layout);
         jPanelALeer1Layout.setHorizontalGroup(
             jPanelALeer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 466, Short.MAX_VALUE)
+            .addGap(0, 560, Short.MAX_VALUE)
         );
         jPanelALeer1Layout.setVerticalGroup(
             jPanelALeer1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -551,7 +815,7 @@ public class Aplicacion extends javax.swing.JFrame {
         jPanelAModificar1.setLayout(jPanelAModificar1Layout);
         jPanelAModificar1Layout.setHorizontalGroup(
             jPanelAModificar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 466, Short.MAX_VALUE)
+            .addGap(0, 560, Short.MAX_VALUE)
         );
         jPanelAModificar1Layout.setVerticalGroup(
             jPanelAModificar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -564,7 +828,7 @@ public class Aplicacion extends javax.swing.JFrame {
         jPanelAEliminar1.setLayout(jPanelAEliminar1Layout);
         jPanelAEliminar1Layout.setHorizontalGroup(
             jPanelAEliminar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 466, Short.MAX_VALUE)
+            .addGap(0, 560, Short.MAX_VALUE)
         );
         jPanelAEliminar1Layout.setVerticalGroup(
             jPanelAEliminar1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -595,10 +859,6 @@ public class Aplicacion extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextFieldPApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPApellidoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPApellidoActionPerformed
-
     private void jButtonPasajeroLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPasajeroLimpiarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonPasajeroLimpiarActionPerformed
@@ -606,24 +866,24 @@ public class Aplicacion extends javax.swing.JFrame {
     private void jButtonPLBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPLBuscarActionPerformed
         // TODO add your handling code here:
         Pasajero pasajero = Controladores.getPjc().findPasajero(Long.parseLong(jTextFieldPLBuscarDNI.getText()));
-        Controladores.getVista().PLImprimirDatos(jTextFieldPLDNI,jTextFieldPLApe,jTextFieldPLnombre, jTablePLTickets, pasajero);
+        Controladores.getVista().PLImprimirDatos(jTextFieldPLDNI, jTextFieldPLApe, jTextFieldPLnombre, jTablePLTickets, pasajero);
     }//GEN-LAST:event_jButtonPLBuscarActionPerformed
 
     private void jButtonPLLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPLLimpiarActionPerformed
         // TODO add your handling code here:
-        Controladores.getVista().PLLimpiarDatos(jTextFieldPLBuscarDNI,jTextFieldPLDNI,jTextFieldPLApe,jTextFieldPLnombre, jTablePLTickets);
+        Controladores.getVista().PLLimpiarDatos(jTextFieldPLBuscarDNI, jTextFieldPLDNI, jTextFieldPLApe, jTextFieldPLnombre, jTablePLTickets);
     }//GEN-LAST:event_jButtonPLLimpiarActionPerformed
 
     private void jButtonPMBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPMBuscarActionPerformed
         // TODO add your handling code here:
         Pasajero pasajero = Controladores.getPjc().findPasajero(Long.parseLong(jTextFieldPMBuscar.getText()));
-        Controladores.getVista().PMImprimirDatos(jTextFieldPMDNI,jTextFieldPMApe,jTextFieldPMNombre,pasajero);
+        Controladores.getVista().PMImprimirDatos(jTextFieldPMDNI, jTextFieldPMApe, jTextFieldPMNombre, pasajero);
     }//GEN-LAST:event_jButtonPMBuscarActionPerformed
 
     private void jButtonPMGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPMGuardarActionPerformed
         try {
             // TODO add your handling code here:
-            Controladores.getVista().PMModificarDatos(jTextFieldPMDNI,jTextFieldPMApe,jTextFieldPMNombre);
+            Controladores.getVista().PMModificarDatos(jTextFieldPMDNI, jTextFieldPMApe, jTextFieldPMNombre);
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(Aplicacion.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
@@ -632,12 +892,12 @@ public class Aplicacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonPMGuardarActionPerformed
 
     private void jButtonPasajeroCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPasajeroCrearActionPerformed
-           
-        Controladores.getVista().PCrearPasajero(jTextFieldPDNI,jTextFieldPApellido,jTextFieldPNombre);
+
+        Controladores.getVista().PCrearPasajero(jTextFieldPDNI, jTextFieldPApellido, jTextFieldPNombre);
     }//GEN-LAST:event_jButtonPasajeroCrearActionPerformed
 
     private void jButtonPEliminarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPEliminarDatosActionPerformed
-Pasajero pasajero = Controladores.getPjc().findPasajero(Long.parseLong(jTextFieldPEDNI.getText()));
+        Pasajero pasajero = Controladores.getPjc().findPasajero(Long.parseLong(jTextFieldPEDNI.getText()));
         Controladores.getVista().PEliminarDatos(jTextFieldPEDNI,pasajero);                                                   }//GEN-LAST:event_jButtonPEliminarDatosActionPerformed
 
     /**
@@ -683,6 +943,15 @@ Pasajero pasajero = Controladores.getPjc().findPasajero(Long.parseLong(jTextFiel
     private javax.swing.JButton jButtonPMGuardar;
     private javax.swing.JButton jButtonPasajeroCrear;
     private javax.swing.JButton jButtonPasajeroLimpiar;
+    private javax.swing.JButton jButtonTCCrear;
+    private javax.swing.JButton jButtonTCLimpiar;
+    private javax.swing.JButton jButtonTEEliminar;
+    private javax.swing.JButton jButtonTLBuscar;
+    private javax.swing.JButton jButtonTLLimpiar;
+    private javax.swing.JButton jButtonTMBuscar;
+    private javax.swing.JButton jButtonTMModificar;
+    private javax.swing.JButton jButtonVCCrear;
+    private javax.swing.JButton jButtonVCLimpiar;
     private javax.swing.JLabel jLabelPCApe;
     private javax.swing.JLabel jLabelPCDNI;
     private javax.swing.JLabel jLabelPCnombre;
@@ -696,6 +965,22 @@ Pasajero pasajero = Controladores.getPjc().findPasajero(Long.parseLong(jTextFiel
     private javax.swing.JLabel jLabelPMApe;
     private javax.swing.JLabel jLabelPMBuscar;
     private javax.swing.JLabel jLabelPMDNI;
+    private javax.swing.JLabel jLabelTCCodigoVuelo;
+    private javax.swing.JLabel jLabelTCDNI;
+    private javax.swing.JLabel jLabelTCNumeroTicket;
+    private javax.swing.JLabel jLabelTENumeroTicket;
+    private javax.swing.JLabel jLabelTLBuscar;
+    private javax.swing.JLabel jLabelTLCodigoVuelo;
+    private javax.swing.JLabel jLabelTLDNI;
+    private javax.swing.JLabel jLabelTLNumeroTicket;
+    private javax.swing.JLabel jLabelTMBuscar;
+    private javax.swing.JLabel jLabelTMCodigoVuelo;
+    private javax.swing.JLabel jLabelTMDNI;
+    private javax.swing.JLabel jLabelTMNumeroTicket;
+    private javax.swing.JLabel jLabelVCCodigoAeropuertoLlegada;
+    private javax.swing.JLabel jLabelVCCodigoAeropuertoPartida;
+    private javax.swing.JLabel jLabelVCCodigoVuelo;
+    private javax.swing.JLabel jLabelVCPrecio;
     private javax.swing.JPanel jPanelACrear1;
     private javax.swing.JPanel jPanelAEliminar1;
     private javax.swing.JPanel jPanelALeer1;
@@ -731,5 +1016,21 @@ Pasajero pasajero = Controladores.getPjc().findPasajero(Long.parseLong(jTextFiel
     private javax.swing.JTextField jTextFieldPMDNI;
     private javax.swing.JTextField jTextFieldPMNombre;
     private javax.swing.JTextField jTextFieldPNombre;
+    private javax.swing.JTextField jTextFieldTCCodigoVuelo;
+    private javax.swing.JTextField jTextFieldTCDNI;
+    private javax.swing.JTextField jTextFieldTCNumeroTicket;
+    private javax.swing.JTextField jTextFieldTENumeroTicket;
+    private javax.swing.JTextField jTextFieldTLCodigoVuelo;
+    private javax.swing.JTextField jTextFieldTLDNI;
+    private javax.swing.JTextField jTextFieldTLNumeroTicketBusqueda;
+    private javax.swing.JTextField jTextFieldTLNumeroTicketResultado;
+    private javax.swing.JTextField jTextFieldTMBuscar;
+    private javax.swing.JTextField jTextFieldTMCodigoVuelo;
+    private javax.swing.JTextField jTextFieldTMDNI;
+    private javax.swing.JTextField jTextFieldTMNumeroTicket;
+    private javax.swing.JTextField jTextFieldVCAeropuertoLlegada;
+    private javax.swing.JTextField jTextFieldVCCodigoAeropuertoPartida;
+    private javax.swing.JTextField jTextFieldVCCodigoVuelo;
+    private javax.swing.JTextField jTextFieldVCPrecio;
     // End of variables declaration//GEN-END:variables
 }

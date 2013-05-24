@@ -8,8 +8,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -19,18 +17,22 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Vuelo implements Serializable {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long codigoVuelo;
-    
     // tal vez sea mejor tener una lista de precios, segun el tipo de ticket?
     // segun el tipo de clase del asiento, como minimo
     // ej: private List<Double> listaPrecios = new ArrayList();
     // una lista donde se pueden guardar los posibles precios de cada vuelo
     private Double precio;
-    
+    private Long codigoAeropuertoPartida;
+    private Long codigoAeropuertoLlegada;
     @OneToMany
-    private List<Tickets> ticketsLista = new ArrayList();
+    private List<Tickets> ticketsLista;
+
+    public Vuelo() {
+        this.ticketsLista = new ArrayList<Tickets>();
+    }
 
     /**
      * @return the codigoVuelo
@@ -66,6 +68,32 @@ public class Vuelo implements Serializable {
     public void setTicketsLista(List<Tickets> ticketsLista) {
         this.ticketsLista = ticketsLista;
     }
-    
-    
+
+    /**
+     * @return the codigoAeropuertoPartida
+     */
+    public Long getCodigoAeropuertoPartida() {
+        return codigoAeropuertoPartida;
+    }
+
+    /**
+     * @param codigoAeropuertoPartida the codigoAeropuertoPartida to set
+     */
+    public void setCodigoAeropuertoPartida(Long codigoAeropuertoPartida) {
+        this.codigoAeropuertoPartida = codigoAeropuertoPartida;
+    }
+
+    /**
+     * @return the codigoAeropuertoLlegada
+     */
+    public Long getCodigoAeropuertoLlegada() {
+        return codigoAeropuertoLlegada;
+    }
+
+    /**
+     * @param codigoAeropuertoLlegada the codigoAeropuertoLlegada to set
+     */
+    public void setCodigoAeropuertoLlegada(Long codigoAeropuertoLlegada) {
+        this.codigoAeropuertoLlegada = codigoAeropuertoLlegada;
+    }
 }

@@ -8,8 +8,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -21,18 +19,15 @@ import javax.persistence.OneToMany;
 public class Aeropuerto implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
- 
     private Long codigoAeropuerto;
-    
     private String ciudad;
     private String pais;
     @OneToMany
+    private List<Vuelo> listaVuelos;
 
-    private List<Vuelo> entradaLista = new ArrayList();
-    @OneToMany
-
-    private List<Vuelo> salidaLista = new ArrayList();
+    public Aeropuerto() {
+        this.listaVuelos = new ArrayList<Vuelo>();
+    }
 
     /**
      * @return the codigoAeropuerto
@@ -70,30 +65,16 @@ public class Aeropuerto implements Serializable {
     }
 
     /**
-     * @return the entradaLista
+     * @return the listaVuelos
      */
-    public List<Vuelo> getEntradaLista() {
-        return entradaLista;
+    public List<Vuelo> getListaVuelos() {
+        return listaVuelos;
     }
 
     /**
-     * @param entradaLista the entradaLista to set
+     * @param listaVuelos the listaVuelos to set
      */
-    public void setEntradaLista(List<Vuelo> entradaLista) {
-        this.entradaLista = entradaLista;
-    }
-
-    /**
-     * @return the salidaLista
-     */
-    public List<Vuelo> getSalidaLista() {
-        return salidaLista;
-    }
-
-    /**
-     * @param salidaLista the salidaLista to set
-     */
-    public void setSalidaLista(List<Vuelo> salidaLista) {
-        this.salidaLista = salidaLista;
+    public void setListaVuelos(List<Vuelo> listaVuelos) {
+        this.listaVuelos = listaVuelos;
     }
 }
