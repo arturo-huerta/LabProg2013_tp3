@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 
 /**
@@ -31,7 +30,6 @@ public class Vuelo implements Serializable {
     private Double precio;
     
     @OneToMany
-    @JoinTable(name = "tickets_lista")
     private List<Tickets> ticketsLista = new ArrayList();
 
     /**

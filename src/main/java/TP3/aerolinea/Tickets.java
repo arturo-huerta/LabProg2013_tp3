@@ -15,7 +15,9 @@ import javax.persistence.Id;
 @Entity
 public class Tickets implements Serializable {
     @Id
-    private long numeroTicket;
+    private Long numeroTicket;
+    private Long codigoVuelo;
+    private Long codigoAeropuerto;
 
     /**
      * @return the numeroTicket
@@ -29,6 +31,34 @@ public class Tickets implements Serializable {
      */
     public void setNumeroTicket(long numeroTicket) {
         this.numeroTicket = numeroTicket;
+    }
+
+    /**
+     * @return the codigoVuelo
+     */
+    public Long getCodigoVuelo() {
+        return codigoVuelo;
+    }
+
+    /**
+     * @param codigoVuelo the codigoVuelo to set
+     */
+    public void setCodigoVuelo(Long codigoVuelo) {
+        this.codigoVuelo = codigoVuelo;
+    }
+
+    /**
+     * @return the codigoAeropuerto
+     */
+    public Long getCodigoAeropuerto() {
+        return codigoAeropuerto;
+    }
+
+    /**
+     * @param codigoAeropuerto the codigoAeropuerto to set
+     */
+    public void setCodigoAeropuerto(Long codigoAeropuerto) {
+        this.codigoAeropuerto = codigoAeropuerto;
     }
     
     

@@ -54,7 +54,7 @@ public class PasajeroJpaController implements Serializable {
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
             if (msg == null || msg.length() == 0) {
-                Long id = pasajero.getId();
+                Long id = pasajero.getDNI();
                 if (findPasajero(id) == null) {
                     throw new NonexistentEntityException("The pasajero with id " + id + " no longer exists.");
                 }
@@ -75,7 +75,7 @@ public class PasajeroJpaController implements Serializable {
             Pasajero pasajero;
             try {
                 pasajero = em.getReference(Pasajero.class, id);
-                pasajero.getId();
+                pasajero.getDNI();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The pasajero with id " + id + " no longer exists.", enfe);
             }
