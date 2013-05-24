@@ -92,6 +92,10 @@ public class Aplicacion extends javax.swing.JFrame {
         jTextFieldTLDNI = new javax.swing.JTextField();
         jLabelTLNumeroTicket = new javax.swing.JLabel();
         jTextFieldTLNumeroTicketResultado = new javax.swing.JTextField();
+        jLabelTLCodigoAeropuertoPartida = new javax.swing.JLabel();
+        jTextFieldTLCodigoAeropuertoPartida = new javax.swing.JTextField();
+        jLabelTLCodigoAeropuertoLlegada = new javax.swing.JLabel();
+        jTextFieldTLCodigoAeropuertoLlegada = new javax.swing.JTextField();
         jPanelTModificar = new javax.swing.JPanel();
         jLabelTMBuscar = new javax.swing.JLabel();
         jLabelTMCodigoVuelo = new javax.swing.JLabel();
@@ -523,6 +527,12 @@ public class Aplicacion extends javax.swing.JFrame {
 
         jTextFieldTLNumeroTicketResultado.setEditable(false);
 
+        jLabelTLCodigoAeropuertoPartida.setText("Código del Aeropuerto de Partida");
+
+        jTextFieldTLCodigoAeropuertoPartida.setEditable(false);
+
+        jLabelTLCodigoAeropuertoLlegada.setText("Código del Aeropuerto de Llegada");
+
         javax.swing.GroupLayout jPanelTLeerLayout = new javax.swing.GroupLayout(jPanelTLeer);
         jPanelTLeer.setLayout(jPanelTLeerLayout);
         jPanelTLeerLayout.setHorizontalGroup(
@@ -541,19 +551,27 @@ public class Aplicacion extends javax.swing.JFrame {
                                 .addComponent(jTextFieldTLNumeroTicketBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTLeerLayout.createSequentialGroup()
                                     .addComponent(jLabelTLBuscar)
-                                    .addGap(65, 65, 65)))))
+                                    .addGap(65, 65, 65))))
+                        .addGap(0, 229, Short.MAX_VALUE))
                     .addGroup(jPanelTLeerLayout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabelTLNumeroTicket, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                            .addComponent(jLabelTLDNI, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelTLCodigoVuelo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelTLNumeroTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelTLCodigoAeropuertoPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelTLDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelTLCodigoVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTextFieldTLNumeroTicketResultado, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldTLCodigoAeropuertoPartida)
                             .addComponent(jTextFieldTLCodigoVuelo)
-                            .addComponent(jTextFieldTLDNI)
-                            .addComponent(jTextFieldTLNumeroTicketResultado, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))))
-                .addContainerGap(189, Short.MAX_VALUE))
+                            .addComponent(jTextFieldTLDNI)))
+                    .addGroup(jPanelTLeerLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabelTLCodigoAeropuertoLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldTLCodigoAeropuertoLlegada)))
+                .addContainerGap())
         );
         jPanelTLeerLayout.setVerticalGroup(
             jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -578,7 +596,15 @@ public class Aplicacion extends javax.swing.JFrame {
                 .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTLNumeroTicket)
                     .addComponent(jTextFieldTLNumeroTicketResultado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTLCodigoAeropuertoPartida)
+                    .addComponent(jTextFieldTLCodigoAeropuertoPartida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelTLCodigoAeropuertoLlegada)
+                    .addComponent(jTextFieldTLCodigoAeropuertoLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         jTabbedPaneTickets.addTab("Leer", jPanelTLeer);
@@ -970,6 +996,8 @@ public class Aplicacion extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelTCNumeroTicket;
     private javax.swing.JLabel jLabelTENumeroTicket;
     private javax.swing.JLabel jLabelTLBuscar;
+    private javax.swing.JLabel jLabelTLCodigoAeropuertoLlegada;
+    private javax.swing.JLabel jLabelTLCodigoAeropuertoPartida;
     private javax.swing.JLabel jLabelTLCodigoVuelo;
     private javax.swing.JLabel jLabelTLDNI;
     private javax.swing.JLabel jLabelTLNumeroTicket;
@@ -1020,6 +1048,8 @@ public class Aplicacion extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldTCDNI;
     private javax.swing.JTextField jTextFieldTCNumeroTicket;
     private javax.swing.JTextField jTextFieldTENumeroTicket;
+    private javax.swing.JTextField jTextFieldTLCodigoAeropuertoLlegada;
+    private javax.swing.JTextField jTextFieldTLCodigoAeropuertoPartida;
     private javax.swing.JTextField jTextFieldTLCodigoVuelo;
     private javax.swing.JTextField jTextFieldTLDNI;
     private javax.swing.JTextField jTextFieldTLNumeroTicketBusqueda;

@@ -704,7 +704,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
+                              <Group type="102" attributes="0">
                                   <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="1" attributes="0">
@@ -721,23 +721,32 @@
                                           </Group>
                                       </Group>
                                   </Group>
+                                  <EmptySpace min="0" pref="229" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jLabelTLNumeroTicket" alignment="0" pref="147" max="32767" attributes="0"/>
-                                      <Component id="jLabelTLDNI" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jLabelTLCodigoVuelo" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="jLabelTLNumeroTicket" min="-2" pref="224" max="-2" attributes="0"/>
+                                      <Component id="jLabelTLCodigoAeropuertoPartida" min="-2" pref="279" max="-2" attributes="0"/>
+                                      <Component id="jLabelTLDNI" min="-2" pref="279" max="-2" attributes="0"/>
+                                      <Component id="jLabelTLCodigoVuelo" alignment="0" min="-2" pref="279" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="jTextFieldTLNumeroTicketResultado" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jTextFieldTLCodigoAeropuertoPartida" alignment="1" max="32767" attributes="0"/>
                                       <Component id="jTextFieldTLCodigoVuelo" max="32767" attributes="0"/>
-                                      <Component id="jTextFieldTLDNI" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jTextFieldTLNumeroTicketResultado" alignment="0" pref="200" max="32767" attributes="0"/>
+                                      <Component id="jTextFieldTLDNI" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jLabelTLCodigoAeropuertoLlegada" min="-2" pref="279" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldTLCodigoAeropuertoLlegada" max="32767" attributes="0"/>
+                              </Group>
                           </Group>
-                          <EmptySpace pref="189" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -768,7 +777,17 @@
                               <Component id="jLabelTLNumeroTicket" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jTextFieldTLNumeroTicketResultado" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="212" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabelTLCodigoAeropuertoPartida" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextFieldTLCodigoAeropuertoPartida" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabelTLCodigoAeropuertoLlegada" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextFieldTLCodigoAeropuertoLlegada" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="148" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -823,6 +842,23 @@
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                   </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabelTLCodigoAeropuertoPartida">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="C&#xf3;digo del Aeropuerto de Partida"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextFieldTLCodigoAeropuertoPartida">
+                  <Properties>
+                    <Property name="editable" type="boolean" value="false"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jLabelTLCodigoAeropuertoLlegada">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="C&#xf3;digo del Aeropuerto de Llegada"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="jTextFieldTLCodigoAeropuertoLlegada">
                 </Component>
               </SubComponents>
             </Container>
