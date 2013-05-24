@@ -8,9 +8,9 @@
     <class>TP3.aerolinea.Vuelo</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/TP3_Aerolinea"/>
-      <property name="javax.persistence.jdbc.password" value="pepe123"/>
+      <property name="javax.persistence.jdbc.password" value="lalala"/>
       <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
-      <property name="javax.persistence.jdbc.user" value="pablo"/>
+      <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="eclipselink.ddl-generation" value="create-tables"/>
     </properties>
   </persistence-unit>

@@ -15,12 +15,12 @@ import javax.swing.JTextField;
  *
  * @author tincho
  */
-public class app1 extends javax.swing.JFrame {
+public class Aplicacion extends javax.swing.JFrame {
 
     /**
      * Creates new form pepe
      */
-    public app1() {
+    public Aplicacion() {
         initComponents();
     }
 
@@ -625,9 +625,9 @@ public class app1 extends javax.swing.JFrame {
             // TODO add your handling code here:
             Controladores.getVista().PMModificarDatos(jTextFieldPMDNI,jTextFieldPMApe,jTextFieldPMNombre);
         } catch (NonexistentEntityException ex) {
-            Logger.getLogger(app1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Aplicacion.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
-            Logger.getLogger(app1.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Aplicacion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonPMGuardarActionPerformed
 
@@ -657,20 +657,20 @@ Pasajero pasajero = Controladores.getPjc().findPasajero(Long.parseLong(jTextFiel
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(app1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Aplicacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(app1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Aplicacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(app1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Aplicacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(app1.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Aplicacion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new app1().setVisible(true);
+                new Aplicacion().setVisible(true);
             }
         });
     }
