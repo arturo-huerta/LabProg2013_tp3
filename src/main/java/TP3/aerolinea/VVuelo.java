@@ -45,11 +45,12 @@ class VVuelo {
      * @param aeropuertoL the value of aeropuertoL
      * @param tickets the value of tickets
      */
-    public void imprimir(Vuelo v, JTextField codigoVuelo, JTextField aeropuertoP, JTextField aeropuertoL, JTable tickets) {
+    public void imprimir(Vuelo v, JTextField codigoVuelo, JTextField aeropuertoP, JTextField aeropuertoL, JTextField precio, JTable tickets) {
         try {
             codigoVuelo.setText(v.getCodigoVuelo().toString());
             aeropuertoP.setText(v.getCodigoAeropuertoPartida().toString());
             aeropuertoL.setText(v.getCodigoAeropuertoLlegada().toString());
+            precio.setText(v.getPrecio().toString());
             if (tickets != null) {
             try {
                 tickets.removeAll();

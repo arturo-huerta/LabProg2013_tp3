@@ -1422,12 +1422,12 @@ public class Aplicacion extends javax.swing.JFrame {
 
     private void jButtonVLBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVLBuscarActionPerformed
         // TODO add your handling code here:
-        Vista.vuelo().imprimir(Controladores.getVjc().findVuelo(Long.parseLong(jTextFieldVLCodigoVueloBusqueda.getText())),jTextFieldVLCodigoVuelo,jTextFieldVLCodigoAeropuertoPartida,jTextFieldVLCodigoAeropuertoLlegada, jTableVLTickets);
+        Vista.vuelo().imprimir(Controladores.getVjc().findVuelo(Long.parseLong(jTextFieldVLCodigoVueloBusqueda.getText())),jTextFieldVLCodigoVuelo,jTextFieldVLCodigoAeropuertoPartida,jTextFieldVLCodigoAeropuertoLlegada, jTextFieldVLPrecio, jTableVLTickets);
     }//GEN-LAST:event_jButtonVLBuscarActionPerformed
 
     private void jButtonVMBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVMBuscarActionPerformed
         // TODO add your handling code here:
-        Vista.vuelo().imprimir(Controladores.getVjc().findVuelo(Long.parseLong(jTextFieldVMCodigoVueloBuscar.getText())), jTextFieldVMCodigoVuelo, jTextFieldVMCodigoAeropuertoPartida,jTextFieldVMCodigoAeropuertoLlegada,null);
+        Vista.vuelo().imprimir(Controladores.getVjc().findVuelo(Long.parseLong(jTextFieldVMCodigoVueloBuscar.getText())), jTextFieldVMCodigoVuelo, jTextFieldVMCodigoAeropuertoPartida,jTextFieldVMCodigoAeropuertoLlegada,jTextFieldVMPrecio, null);
         
     }//GEN-LAST:event_jButtonVMBuscarActionPerformed
 

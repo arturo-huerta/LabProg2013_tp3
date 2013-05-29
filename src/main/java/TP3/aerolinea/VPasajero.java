@@ -28,6 +28,9 @@ public class VPasajero {
         // 2. Agregar cada ticket del pasajero
         try {
             tickets.removeAll();
+        } catch (Exception e) {
+        }
+        try {
             DefaultTableModel temp = (DefaultTableModel) tickets.getModel();
             List<Tickets> lista = pasajero.getTicketLista();
             for (int i = 0; i < lista.size(); i++) {
@@ -46,19 +49,28 @@ public class VPasajero {
         Pasajero pasajero = Controladores.getPjc().findPasajero(Long.parseLong(dni.getText()));
         pasajero.setApellido(apellido.getText());
         pasajero.setNombre(nombre.getText());
-        Controladores.getPjc().edit(pasajero);
+        try {
+        Controladores.getPjc().edit(pasajero);}
+        catch (NonexistentEntityException noee) {}
+        catch (Exception e) {}
     }
 
     public void eliminar(JTextField dni) throws NonexistentEntityException {
         // Eliminar tickets del pasajero
         Pasajero p = Controladores.getPjc().findPasajero(Long.parseLong(dni.getText()));
         List<Tickets> listaTickets = p.getTicketLista();
-        for (Tickets t:listaTickets) {
-            JTextField jt = new JTextField();
-            jt.setText(t.getNumeroTicket().toString());
-            Vista.ticket().eliminar(jt);
+        try {
+            for (Tickets t : listaTickets) {
+                JTextField jt = new JTextField();
+                jt.setText(t.getNumeroTicket().toString());
+                Vista.ticket().eliminar(jt);
+            }
+        } catch (Exception e) {
         }
-        Controladores.getPjc().destroy(p.getDNI());
+        try {
+        Controladores.getPjc().destroy(p.getDNI());}
+        catch (NonexistentEntityException noee) {}
+        catch (Exception e) {}
     }
 
     public void crear(JTextField dni, JTextField apellido, JTextField nombre) {

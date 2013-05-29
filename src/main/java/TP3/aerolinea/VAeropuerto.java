@@ -33,6 +33,7 @@ class VAeropuerto {
     /**
      *
      *
+     * @param precio the value of precio
      * @param vuelos the value of vuelos
      */
     public void imprimir(Aeropuerto a, JTextField codigo, JTextField pais, JTextField ciudad, javax.swing.JTable vuelos) {
@@ -41,38 +42,41 @@ class VAeropuerto {
         ciudad.setText(a.getCiudad());
         // Imprimir vuelos        
         try {
-                vuelos.removeAll();
-                DefaultTableModel temp = (DefaultTableModel) vuelos.getModel();
+            vuelos.removeAll();
+        } catch (Exception e) {
+        }
+        try {
+            DefaultTableModel temp = (DefaultTableModel) vuelos.getModel();
 
-                for (Vuelo v : a.getListaVuelos()) {
-                    Object fila[] = {v.getCodigoVuelo(), v.getCodigoAeropuertoLlegada()};
-                    temp.addRow(fila);
-                }
-            } catch (Exception e) {
+            for (Vuelo v : a.getListaVuelos()) {
+                Object fila[] = {v.getCodigoVuelo(), v.getCodigoAeropuertoLlegada()};
+                temp.addRow(fila);
             }
+        } catch (Exception e) {
+        }
     }
 
     void eliminar(Aeropuerto findAeropuerto) throws NonexistentEntityException {
         // Tickets
         // Eliminar referencia de todos los tickets en los pasajeros de todos los vuelos del aeropuerto
         List<Vuelo> listaVuelos = findAeropuerto.getListaVuelos();
-        for (Vuelo v: listaVuelos) {
-            List<Tickets> listaTickets = v.getTicketsLista();
-            for (Tickets t: listaTickets) {
-                Pasajero p = Controladores.getPjc().findPasajero(t.getDniPasajero());
-                p.getTicketLista().remove(t);
-                Controladores.getTjc().destroy(t.getNumeroTicket());
+        try {
+            for (Vuelo v : listaVuelos) {
+                List<Tickets> listaTickets = v.getTicketsLista();
+                try {
+                    for (Tickets t : listaTickets) {
+                        Pasajero p = Controladores.getPjc().findPasajero(t.getDniPasajero());
+                        p.getTicketLista().remove(t);
+                        Controladores.getTjc().destroy(t.getNumeroTicket());
+                    }
+                } catch (Exception e) {
+                }
+                Controladores.getVjc().destroy(v.getCodigoVuelo());
             }
-            Controladores.getVjc().destroy(v.getCodigoVuelo());
+        } catch (Exception e) {
         }
-        Controladores.getAjc().destroy(findAeropuerto.getCodigoAeropuerto());
-        
-        // Eliminar ticket
-        
-        // Vuelo
-        // Eliminar vuelo
-        
-        // Aeropuerto
-        // Eliminar Aeropuerto
+        try {
+        Controladores.getAjc().destroy(findAeropuerto.getCodigoAeropuerto());}
+        catch (Exception e) {}
     }
 }
