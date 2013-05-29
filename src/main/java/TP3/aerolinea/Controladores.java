@@ -23,7 +23,6 @@ public class Controladores {
     private static PasajeroJpaController pjc = new PasajeroJpaController(emf);
     private static TicketsJpaController tjc = new TicketsJpaController(emf);
     private static VueloJpaController vjc = new VueloJpaController(emf);
-    private static Vista vista = new Vista();
 
     /**
      * @return the ajc
@@ -51,13 +50,6 @@ public class Controladores {
      */
     public static VueloJpaController getVjc() {
         return vjc;
-    }
-
-    /**
-     * @return the vista
-     */
-    public static Vista getVista() {
-        return vista;
     }
 
     private Controladores() {

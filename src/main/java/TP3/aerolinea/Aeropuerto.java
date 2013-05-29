@@ -7,6 +7,7 @@ package TP3.aerolinea;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -19,6 +20,7 @@ import javax.persistence.OneToMany;
 public class Aeropuerto implements Serializable {
 
     @Id
+    @Column(unique = true)
     private Long codigoAeropuerto;
     private String ciudad;
     private String pais;

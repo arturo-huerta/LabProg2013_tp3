@@ -7,6 +7,7 @@ package TP3.aerolinea;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -19,6 +20,7 @@ import javax.persistence.OneToMany;
 public class Vuelo implements Serializable {
 
     @Id
+    @Column(unique = true)
     private Long codigoVuelo;
     // tal vez sea mejor tener una lista de precios, segun el tipo de ticket?
     // segun el tipo de clase del asiento, como minimo
@@ -95,5 +97,12 @@ public class Vuelo implements Serializable {
      */
     public void setCodigoAeropuertoLlegada(Long codigoAeropuertoLlegada) {
         this.codigoAeropuertoLlegada = codigoAeropuertoLlegada;
+    }
+
+    /**
+     * @param codigoVuelo the codigoVuelo to set
+     */
+    public void setCodigoVuelo(Long codigoVuelo) {
+        this.codigoVuelo = codigoVuelo;
     }
 }

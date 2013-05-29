@@ -5,6 +5,7 @@
 package TP3.aerolinea;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -16,13 +17,16 @@ import javax.persistence.Id;
 public class Tickets implements Serializable {
 
     @Id
+    @Column(unique = true)
     private Long numeroTicket;
+    
     private Long codigoVuelo;
+    private Long dniPasajero;
 
     /**
      * @return the numeroTicket
      */
-    public long getNumeroTicket() {
+    public Long getNumeroTicket() {
         return numeroTicket;
     }
 
@@ -45,5 +49,19 @@ public class Tickets implements Serializable {
      */
     public void setCodigoVuelo(Long codigoVuelo) {
         this.codigoVuelo = codigoVuelo;
+    }
+
+    /**
+     * @return the dniPasajero
+     */
+    public Long getDniPasajero() {
+        return dniPasajero;
+    }
+
+    /**
+     * @param dniPasajero the dniPasajero to set
+     */
+    public void setDniPasajero(Long dniPasajero) {
+        this.dniPasajero = dniPasajero;
     }
 }
