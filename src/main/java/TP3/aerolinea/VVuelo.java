@@ -4,7 +4,9 @@
  */
 package TP3.aerolinea;
 
+import TP3.aerolinea.controller.exceptions.NonexistentEntityException;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -48,9 +50,7 @@ class VVuelo {
             codigoVuelo.setText(v.getCodigoVuelo().toString());
             aeropuertoP.setText(v.getCodigoAeropuertoPartida().toString());
             aeropuertoL.setText(v.getCodigoAeropuertoLlegada().toString());
-        } catch (Exception e) {
-        }
-        if (tickets != null) {
+            if (tickets != null) {
             try {
                 tickets.removeAll();
                 DefaultTableModel temp = (DefaultTableModel) tickets.getModel();
@@ -63,6 +63,9 @@ class VVuelo {
             } catch (Exception e) {
             }
         }
+        } catch (Exception e) {
+        }
+        
     }
 
     /**
@@ -78,13 +81,27 @@ class VVuelo {
             v.setCodigoAeropuertoPartida(Long.parseLong(aeropuertoP.getText()));
             v.setCodigoAeropuertoLlegada(Long.parseLong(aeropuertoL.getText()));
             v.setPrecio(Double.parseDouble(precio.getText()));
+            a = Controladores.getAjc().findAeropuerto(v.getCodigoAeropuertoPartida());
+            a.getListaVuelos().add(v);
             // Editar vuelo en la DB
             Controladores.getVjc().edit(v);
         } catch (Exception e) {
         }
     }
 
-    void eliminar(Vuelo findVuelo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    void eliminar(Vuelo findVuelo) throws NonexistentEntityException {
+        // Obtener lista de tickets del vuelo que vamos a eliminar
+        List<Tickets> listaTickets = findVuelo.getTicketsLista();
+        // Eliminar cada ticket del vuelo
+        for (Tickets t:listaTickets) {
+            JTextField jt = new JTextField();
+            jt.setText(t.getNumeroTicket().toString());
+            Vista.ticket().eliminar(jt);
+        }
+        // Eliminar el vuelo de la lista del aeropuerto
+        Aeropuerto a = Controladores.getAjc().findAeropuerto(findVuelo.getCodigoAeropuertoPartida());
+        a.getListaVuelos().remove(findVuelo);
+        Controladores.getVjc().destroy(findVuelo.getCodigoVuelo());
+        
     }
 }

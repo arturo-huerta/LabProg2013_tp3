@@ -59,6 +59,10 @@ class VTicket {
             // Asignar nuevos datos, recibidos de la GUI
             t.setCodigoVuelo(Long.parseLong(codigoVuelo.getText()));
             t.setDniPasajero(Long.parseLong(dni.getText()));
+            p = Controladores.getPjc().findPasajero(t.getDniPasajero());
+            p.getTicketLista().add(t);
+            v = Controladores.getVjc().findVuelo(t.getCodigoVuelo());
+            v.getTicketsLista().add(t);
             // Actualizar datos del ticket
             Controladores.getTjc().edit(t);
         }

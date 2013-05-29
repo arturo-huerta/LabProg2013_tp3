@@ -6,8 +6,6 @@ package TP3.aerolinea;
 
 import TP3.aerolinea.controller.exceptions.NonexistentEntityException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -51,14 +49,16 @@ public class VPasajero {
         Controladores.getPjc().edit(pasajero);
     }
 
-    public void eliminar(JTextField dni) {
-        // Asignar DNI al textfield del resultado de busqueda
-        Pasajero pasajeroAux = Controladores.getPjc().findPasajero(Long.parseLong(dni.getText()));
-        try {
-            Controladores.getPjc().destroy(pasajeroAux.getDNI());
-        } catch (NonexistentEntityException ex) {
-            Logger.getLogger(Vista.class.getName()).log(Level.SEVERE, null, ex);
+    public void eliminar(JTextField dni) throws NonexistentEntityException {
+        // Eliminar tickets del pasajero
+        Pasajero p = Controladores.getPjc().findPasajero(Long.parseLong(dni.getText()));
+        List<Tickets> listaTickets = p.getTicketLista();
+        for (Tickets t:listaTickets) {
+            JTextField jt = new JTextField();
+            jt.setText(t.getNumeroTicket().toString());
+            Vista.ticket().eliminar(jt);
         }
+        Controladores.getPjc().destroy(p.getDNI());
     }
 
     public void crear(JTextField dni, JTextField apellido, JTextField nombre) {

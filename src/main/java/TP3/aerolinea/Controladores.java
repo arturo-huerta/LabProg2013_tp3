@@ -18,7 +18,7 @@ import javax.persistence.Persistence;
 public class Controladores {
 
     private static Controladores instancia = new Controladores();
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("TP3_Aerolinea");
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("TP3");
     private static AeropuertoJpaController ajc = new AeropuertoJpaController(emf);
     private static PasajeroJpaController pjc = new PasajeroJpaController(emf);
     private static TicketsJpaController tjc = new TicketsJpaController(emf);

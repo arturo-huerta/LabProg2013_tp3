@@ -79,4 +79,11 @@ public class Aeropuerto implements Serializable {
     public void setListaVuelos(List<Vuelo> listaVuelos) {
         this.listaVuelos = listaVuelos;
     }
+
+    /**
+     * @param codigoAeropuerto the codigoAeropuerto to set
+     */
+    public void setCodigoAeropuerto(Long codigoAeropuerto) {
+        this.codigoAeropuerto = codigoAeropuerto;
+    }
 }
