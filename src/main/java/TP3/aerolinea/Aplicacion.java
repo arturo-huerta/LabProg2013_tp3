@@ -5,6 +5,7 @@
 package TP3.aerolinea;
 
 import TP3.aerolinea.controller.exceptions.NonexistentEntityException;
+import TP3.aerolinea.controller.exceptions.PreexistingEntityException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -206,36 +207,34 @@ public class Aplicacion extends javax.swing.JFrame {
         jTextFieldPCrearLayout.setHorizontalGroup(
             jTextFieldPCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jTextFieldPCrearLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(jTextFieldPCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jTextFieldPCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jTextFieldPCrearLayout.createSequentialGroup()
-                        .addComponent(jLabelPCnombre)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextFieldPNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jTextFieldPCrearLayout.createSequentialGroup()
-                        .addComponent(jLabelPCDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTextFieldPDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jTextFieldPCrearLayout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addGroup(jTextFieldPCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelPCnombre)
+                            .addComponent(jLabelPCDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(42, 42, 42))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jTextFieldPCrearLayout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jLabelPCApe, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 348, Short.MAX_VALUE)
-                        .addComponent(jTextFieldPApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(36, 36, 36))
-            .addGroup(jTextFieldPCrearLayout.createSequentialGroup()
-                .addGap(250, 250, 250)
-                .addComponent(jButtonPasajeroCrear)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addGroup(jTextFieldPCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jTextFieldPCrearLayout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jButtonPasajeroCrear))
+                    .addComponent(jTextFieldPDNI, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldPNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldPApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(372, Short.MAX_VALUE))
         );
         jTextFieldPCrearLayout.setVerticalGroup(
             jTextFieldPCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jTextFieldPCrearLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jTextFieldPCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(24, 24, 24)
+                .addGroup(jTextFieldPCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldPApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jTextFieldPCrearLayout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jLabelPCApe, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabelPCApe, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jTextFieldPCrearLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextFieldPNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelPCnombre))
@@ -252,15 +251,20 @@ public class Aplicacion extends javax.swing.JFrame {
 
         jTablePLTickets.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "N°Ticket", "Codigo Vuelo", "Aeropuerto Partida", "Aeropuerto Destino"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTablePLTickets);
 
         jLabelPLDNI.setText("DNI");
@@ -304,32 +308,27 @@ public class Aplicacion extends javax.swing.JFrame {
                     .addComponent(jTextFieldPLApe, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                     .addComponent(jTextFieldPLDNI, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTextFieldPLnombre))
+                .addGap(33, 33, 33)
+                .addComponent(jLabelPLBuscarDNI)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelPLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldPLBuscarDNI)
                     .addGroup(jPanelPLeerLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
-                        .addComponent(jLabelPLBuscar)
-                        .addGap(76, 76, 76))
-                    .addGroup(jPanelPLeerLayout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(jLabelPLBuscarDNI)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelPLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelPLeerLayout.createSequentialGroup()
-                                .addComponent(jButtonPLBuscar)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jTextFieldPLBuscarDNI))
-                        .addContainerGap())))
+                            .addComponent(jButtonPLBuscar)
+                            .addComponent(jLabelPLBuscar))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanelPLeerLayout.setVerticalGroup(
             jPanelPLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelPLeerLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanelPLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelPLeerLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanelPLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelPLDNI)
-                            .addComponent(jTextFieldPLDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabelPLBuscar))
+                    .addGroup(jPanelPLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabelPLDNI)
+                        .addComponent(jTextFieldPLDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabelPLBuscar, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelPLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelPLApe)
@@ -566,17 +565,9 @@ public class Aplicacion extends javax.swing.JFrame {
         jPanelTLeerLayout.setHorizontalGroup(
             jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelTLeerLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelTLeerLayout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldTLNumeroTicketBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelTLeerLayout.createSequentialGroup()
-                                .addComponent(jLabelTLBuscar)
-                                .addGap(65, 65, 65)))
-                        .addGap(0, 332, Short.MAX_VALUE))
-                    .addGroup(jPanelTLeerLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelTLNumeroTicket, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelTLCodigoAeropuertoPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -584,20 +575,23 @@ public class Aplicacion extends javax.swing.JFrame {
                             .addComponent(jLabelTLCodigoVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldTLNumeroTicketResultado, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextFieldTLNumeroTicketResultado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
                             .addComponent(jTextFieldTLCodigoAeropuertoPartida)
                             .addComponent(jTextFieldTLCodigoVuelo)
                             .addComponent(jTextFieldTLDNI)))
                     .addGroup(jPanelTLeerLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabelTLCodigoAeropuertoLlegada, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextFieldTLCodigoAeropuertoLlegada)))
+                        .addComponent(jTextFieldTLCodigoAeropuertoLlegada))
+                    .addGroup(jPanelTLeerLayout.createSequentialGroup()
+                        .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelTLeerLayout.createSequentialGroup()
+                                .addComponent(jTextFieldTLNumeroTicketBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonTLBuscar))
+                            .addComponent(jLabelTLBuscar))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(jPanelTLeerLayout.createSequentialGroup()
-                .addGap(174, 174, 174)
-                .addComponent(jButtonTLBuscar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanelTLeerLayout.setVerticalGroup(
             jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -605,10 +599,10 @@ public class Aplicacion extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabelTLBuscar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextFieldTLNumeroTicketBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButtonTLBuscar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldTLNumeroTicketBusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonTLBuscar))
+                .addGap(38, 38, 38)
                 .addGroup(jPanelTLeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelTLCodigoVuelo)
                     .addComponent(jTextFieldTLCodigoVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -820,17 +814,14 @@ public class Aplicacion extends javax.swing.JFrame {
 
         jTableVLTickets.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Número de Ticket", "DNI Pasajero"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                true, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -951,32 +942,31 @@ public class Aplicacion extends javax.swing.JFrame {
             jPanelVModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelVModificarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelVModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabelVMCodigoAeropuertoLlegada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelVMCodigoAeropuertoPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelVMCodigoVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabelVMPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanelVModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelVModificarLayout.createSequentialGroup()
+                        .addGroup(jPanelVModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelVMCodigoAeropuertoLlegada, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelVMCodigoAeropuertoPartida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelVMCodigoVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelVMPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanelVModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanelVModificarLayout.createSequentialGroup()
-                                .addComponent(jLabelVMCodigoVueloBuscar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextFieldVMCodigoVueloBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanelVModificarLayout.createSequentialGroup()
-                                .addGap(53, 53, 53)
-                                .addComponent(jButtonVMBuscar)))
-                        .addGap(0, 163, Short.MAX_VALUE))
-                    .addComponent(jTextFieldVMCodigoVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
-                    .addComponent(jTextFieldVMCodigoAeropuertoPartida)
-                    .addComponent(jTextFieldVMCodigoAeropuertoLlegada)
-                    .addComponent(jTextFieldVMPrecio))
+                            .addComponent(jTextFieldVMCodigoVuelo, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+                            .addComponent(jTextFieldVMCodigoAeropuertoPartida)
+                            .addComponent(jTextFieldVMCodigoAeropuertoLlegada)
+                            .addComponent(jTextFieldVMPrecio)))
+                    .addGroup(jPanelVModificarLayout.createSequentialGroup()
+                        .addComponent(jLabelVMCodigoVueloBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanelVModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonVMBuscar)
+                            .addComponent(jTextFieldVMCodigoVueloBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanelVModificarLayout.createSequentialGroup()
                 .addGap(226, 226, 226)
                 .addComponent(jButtonVMModificar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(367, Short.MAX_VALUE))
         );
         jPanelVModificarLayout.setVerticalGroup(
             jPanelVModificarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1129,15 +1119,27 @@ public class Aplicacion extends javax.swing.JFrame {
 
         jTableALVuelos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "Código de Vuelo", "Código de Aeropuerto Llegada"
+                "Código de Vuelo", "Código de Aeropuerto Partida", "Código de Aeropuerto Llegada"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPaneALVuelos.setViewportView(jTableALVuelos);
 
         javax.swing.GroupLayout jPanelALeerLayout = new javax.swing.GroupLayout(jPanelALeer);
@@ -1379,7 +1381,16 @@ public class Aplicacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonPasajeroCrearActionPerformed
 
     private void jButtonAMModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAMModificarActionPerformed
-        // TODO add your handling code here:
+        try {
+            // TODO add your handling code here:
+
+            Vista.aeropuerto().modificar(Controladores.getAjc().findAeropuerto(Long.parseLong(jTextFieldAMCodigoAeropuertoBuscar.getText())), jTextFieldAMCodigoAeropuerto, jTextFieldAMPais, jTextFieldAMCiudad);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(Aplicacion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Aplicacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButtonAMModificarActionPerformed
 
     private void jButtonPEliminarDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPEliminarDatosActionPerformed
@@ -1388,14 +1399,25 @@ public class Aplicacion extends javax.swing.JFrame {
             Vista.pasajero().eliminar(jTextFieldPEDNI);
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(Aplicacion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Aplicacion.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
     }//GEN-LAST:event_jButtonPEliminarDatosActionPerformed
 
     private void jButtonTCCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTCCrearActionPerformed
-        // TODO add your handling code here:
-        Vista.ticket().crear(jTextFieldTCCodigoVuelo, jTextFieldTCNumeroTicket, jTextFieldTCDNI);
+        try {
+            // TODO add your handling code here:
+
+            Vista.ticket().crear(jTextFieldTCCodigoVuelo, jTextFieldTCNumeroTicket, jTextFieldTCDNI);
+        } catch (PreexistingEntityException ex) {
+            Logger.getLogger(Aplicacion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Aplicacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
     }//GEN-LAST:event_jButtonTCCrearActionPerformed
 
     private void jButtonTLBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTLBuscarActionPerformed
@@ -1405,7 +1427,7 @@ public class Aplicacion extends javax.swing.JFrame {
 
     private void jButtonTMModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTMModificarActionPerformed
         // TODO add your handling code here:
-        try {Vista.ticket().modificar(jTextFieldTMNumeroTicket, jTextFieldTMCodigoVuelo, jTextFieldTMDNI);}
+        try {Vista.ticket().modificar(jTextFieldTMBuscar, jTextFieldTMNumeroTicket, jTextFieldTMCodigoVuelo, jTextFieldTMDNI);}
         catch (Exception e) {}
     }//GEN-LAST:event_jButtonTMModificarActionPerformed
 
@@ -1416,8 +1438,16 @@ public class Aplicacion extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonTEEliminarActionPerformed
 
     private void jButtonVCCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVCCrearActionPerformed
-        // TODO add your handling code here:
-        Vista.vuelo().crear(jTextFieldVCCodigoVuelo,jTextFieldVCCodigoAeropuertoPartida,jTextFieldVCCodigoAeropuertoLlegada,jTextFieldVCPrecio);
+        try {
+            // TODO add your handling code here:
+
+            Vista.vuelo().crear(jTextFieldVCCodigoVuelo,jTextFieldVCCodigoAeropuertoPartida,jTextFieldVCCodigoAeropuertoLlegada,jTextFieldVCPrecio);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(Aplicacion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Aplicacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButtonVCCrearActionPerformed
 
     private void jButtonVLBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVLBuscarActionPerformed
@@ -1437,17 +1467,27 @@ public class Aplicacion extends javax.swing.JFrame {
             Vista.vuelo().eliminar(Controladores.getVjc().findVuelo(Long.parseLong(jTextFieldVECodigoVuelo.getText())));
         } catch (NonexistentEntityException ex) {
             Logger.getLogger(Aplicacion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Aplicacion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonVEEliminarActionPerformed
 
     private void jButtonTMBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonTMBuscarActionPerformed
         // TODO add your handling code here:
-        Vista.ticket().imprimir(jTextFieldTMNumeroTicket, null, null, jTextFieldTMCodigoVuelo, jTextFieldTMDNI, Controladores.getTjc().findTickets(Long.parseLong(jTextFieldTMBuscar.getText())));
+        Vista.ticket().imprimir(jTextFieldTMNumeroTicket, null,null, jTextFieldTMCodigoVuelo, jTextFieldTMDNI, Controladores.getTjc().findTickets(Long.parseLong(jTextFieldTMBuscar.getText())));
     }//GEN-LAST:event_jButtonTMBuscarActionPerformed
 
     private void jButtonVMModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonVMModificarActionPerformed
-        // TODO add your handling code here:
-        Vista.vuelo().modificar(Controladores.getVjc().findVuelo(Long.parseLong(jTextFieldVMCodigoVueloBuscar.getText())),jTextFieldVMCodigoAeropuertoPartida,jTextFieldVMCodigoAeropuertoLlegada,jTextFieldVMPrecio);
+        try {
+            // TODO add your handling code here:
+
+            Vista.vuelo().modificar(Controladores.getVjc().findVuelo(Long.parseLong(jTextFieldVMCodigoVueloBuscar.getText())),jTextFieldVMCodigoAeropuertoPartida,jTextFieldVMCodigoAeropuertoLlegada,jTextFieldVMPrecio);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(Aplicacion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(Aplicacion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButtonVMModificarActionPerformed
 
     private void jButtonACCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonACCrearActionPerformed
@@ -1470,6 +1510,8 @@ public class Aplicacion extends javax.swing.JFrame {
             // TODO add your handling code here:
             Vista.aeropuerto().eliminar(Controladores.getAjc().findAeropuerto(Long.parseLong(jTextFieldAECodigoAeropuerto.getText())));
         } catch (NonexistentEntityException ex) {
+            Logger.getLogger(Aplicacion.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
             Logger.getLogger(Aplicacion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonAEEliminarActionPerformed

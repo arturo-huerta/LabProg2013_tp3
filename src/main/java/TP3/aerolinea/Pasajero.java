@@ -5,11 +5,10 @@
 package TP3.aerolinea;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 /**
  *
@@ -27,11 +26,10 @@ public class Pasajero implements Serializable {
     private String Nombre;
     // relacion 1 a muchos: 1 pasajero tiene * tickets, los tickets
     // se almacenan en un array list
-    @OneToMany
-    private List<Tickets> ticketLista;
+    //@OneToMany(orphanRemoval=true, cascade={CascadeType.REMOVE})
+    private Set<Long> ticketLista = new HashSet<Long>();
 
     public Pasajero() {
-        this.ticketLista = new ArrayList();
     }
 
     /**
@@ -93,14 +91,14 @@ public class Pasajero implements Serializable {
     /**
      * @return the ticketLista
      */
-    public List<Tickets> getTicketLista() {
+    public Set<Long> getTicketLista() {
         return ticketLista;
     }
 
     /**
      * @param ticketLista the ticketLista to set
      */
-    public void setTicketLista(List<Tickets> ticketLista) {
+    public void setTicketLista(Set<Long> ticketLista) {
         this.ticketLista = ticketLista;
     }
 }

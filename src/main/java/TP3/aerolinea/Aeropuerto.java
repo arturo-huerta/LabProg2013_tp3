@@ -5,11 +5,10 @@
 package TP3.aerolinea;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 /**
  *
@@ -22,12 +21,8 @@ public class Aeropuerto implements Serializable {
     private Long codigoAeropuerto;
     private String ciudad;
     private String pais;
-    @OneToMany
-    private List<Vuelo> listaVuelos;
-
-    public Aeropuerto() {
-        this.listaVuelos = new ArrayList<Vuelo>();
-    }
+    //@OneToMany(orphanRemoval=true, cascade={CascadeType.REMOVE})
+    private Set<Long> listaVuelos = new HashSet<Long>();
 
     /**
      * @return the codigoAeropuerto
@@ -67,14 +62,14 @@ public class Aeropuerto implements Serializable {
     /**
      * @return the listaVuelos
      */
-    public List<Vuelo> getListaVuelos() {
+    public Set<Long> getListaVuelos() {
         return listaVuelos;
     }
 
     /**
      * @param listaVuelos the listaVuelos to set
      */
-    public void setListaVuelos(List<Vuelo> listaVuelos) {
+    public void setListaVuelos(Set<Long> listaVuelos) {
         this.listaVuelos = listaVuelos;
     }
 

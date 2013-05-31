@@ -5,7 +5,7 @@
 package TP3.aerolinea;
 
 import TP3.aerolinea.controller.exceptions.NonexistentEntityException;
-import java.util.List;
+import java.util.Set;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -26,58 +26,51 @@ public class VPasajero {
         // Asignar lista de tickets
         // 1. Limpiar datos de tickets anteriores
         // 2. Agregar cada ticket del pasajero
-        try {
-            tickets.removeAll();
-        } catch (Exception e) {
-        }
-        try {
+        if (tickets != null) {
             DefaultTableModel temp = (DefaultTableModel) tickets.getModel();
-            List<Tickets> lista = pasajero.getTicketLista();
-            for (int i = 0; i < lista.size(); i++) {
-                Tickets t = lista.get(i);
-                Vuelo v = Controladores.getVjc().findVuelo(t.getCodigoVuelo());
-                Object fila[] = {t.getNumeroTicket(), t.getCodigoVuelo(), v.getCodigoAeropuertoPartida(), v.getCodigoAeropuertoLlegada()};
+            for (; temp.getRowCount() > 0;) {
+                temp.removeRow(temp.getRowCount() - 1);
+            }
+            Set<Long> lista = pasajero.getTicketLista();
+            if (lista != null) {
+            for (Long t : lista) {
+                Tickets tAux = Controladores.getTjc().findTickets(t);
+                Vuelo v = Controladores.getVjc().findVuelo(tAux.getCodigoVuelo());
+                Object fila[] = {tAux.getNumeroTicket(), tAux.getCodigoVuelo(), v.getCodigoAeropuertoPartida(), v.getCodigoAeropuertoLlegada()};
                 temp.addRow(fila);
             }
-
-        } catch (Exception e) {
-            System.out.println("Sin elementos");
+            }
         }
     }
 
     public void modificar(JTextField dni, JTextField apellido, JTextField nombre) throws NonexistentEntityException, Exception {
         Pasajero pasajero = Controladores.getPjc().findPasajero(Long.parseLong(dni.getText()));
-        pasajero.setApellido(apellido.getText());
-        pasajero.setNombre(nombre.getText());
-        try {
-        Controladores.getPjc().edit(pasajero);}
-        catch (NonexistentEntityException noee) {}
-        catch (Exception e) {}
+        if (pasajero != null) {
+            pasajero.setApellido(apellido.getText());
+            pasajero.setNombre(nombre.getText());
+            Controladores.getPjc().edit(pasajero);
+        }
     }
 
-    public void eliminar(JTextField dni) throws NonexistentEntityException {
+    public void eliminar(JTextField dni) throws NonexistentEntityException, Exception {
         // Eliminar tickets del pasajero
         Pasajero p = Controladores.getPjc().findPasajero(Long.parseLong(dni.getText()));
-        List<Tickets> listaTickets = p.getTicketLista();
-        try {
-            for (Tickets t : listaTickets) {
-                JTextField jt = new JTextField();
-                jt.setText(t.getNumeroTicket().toString());
-                Vista.ticket().eliminar(jt);
-            }
-        } catch (Exception e) {
+        Set<Long> listaTickets = p.getTicketLista();
+        if (listaTickets != null) {
+        for (Long t:listaTickets) {
+            Tickets tAux = Controladores.getTjc().findTickets(t);
+            JTextField aux = new JTextField();
+            aux.setText(tAux.getNumeroTicket().toString());
+            Vista.ticket().eliminar(aux);
         }
-        try {
-        Controladores.getPjc().destroy(p.getDNI());}
-        catch (NonexistentEntityException noee) {}
-        catch (Exception e) {}
+        }
+        Controladores.getPjc().destroy(p.getDNI());
     }
 
     public void crear(JTextField dni, JTextField apellido, JTextField nombre) {
         Pasajero pasajero = new Pasajero();
         pasajero.setApellido(apellido.getText());
         pasajero.setNombre(nombre.getText());
-        pasajero.setTicketLista(null);
         pasajero.setDNI(Long.parseLong(dni.getText()));
         Controladores.getPjc().create(pasajero);
     }

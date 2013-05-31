@@ -5,7 +5,8 @@
 package TP3.aerolinea;
 
 import TP3.aerolinea.controller.exceptions.NonexistentEntityException;
-import java.util.List;
+import java.util.Set;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -36,47 +37,64 @@ class VAeropuerto {
      * @param precio the value of precio
      * @param vuelos the value of vuelos
      */
-    public void imprimir(Aeropuerto a, JTextField codigo, JTextField pais, JTextField ciudad, javax.swing.JTable vuelos) {
+    public void imprimir(Aeropuerto a, JTextField codigo, JTextField pais, JTextField ciudad, JTable vuelos) {
         codigo.setText(a.getCodigoAeropuerto().toString());
         pais.setText(a.getPais());
         ciudad.setText(a.getCiudad());
         // Imprimir vuelos        
-        try {
-            vuelos.removeAll();
-        } catch (Exception e) {
-        }
-        try {
+        if (vuelos != null) {
             DefaultTableModel temp = (DefaultTableModel) vuelos.getModel();
-
-            for (Vuelo v : a.getListaVuelos()) {
-                Object fila[] = {v.getCodigoVuelo(), v.getCodigoAeropuertoLlegada()};
+            for (; temp.getRowCount() > 0;) {
+                temp.removeRow(temp.getRowCount() - 1);
+            }
+            Set<Long> listaVuelos = a.getListaVuelos();
+            if (listaVuelos != null) {
+            for (Long v : listaVuelos) {
+                Vuelo aux = Controladores.getVjc().findVuelo(v);
+                Object fila[] = {aux.getCodigoVuelo().toString(), aux.getCodigoAeropuertoPartida().toString(), aux.getCodigoAeropuertoLlegada().toString()};
                 temp.addRow(fila);
             }
-        } catch (Exception e) {
+            }
         }
     }
 
-    void eliminar(Aeropuerto findAeropuerto) throws NonexistentEntityException {
-        // Tickets
-        // Eliminar referencia de todos los tickets en los pasajeros de todos los vuelos del aeropuerto
-        List<Vuelo> listaVuelos = findAeropuerto.getListaVuelos();
-        try {
-            for (Vuelo v : listaVuelos) {
-                List<Tickets> listaTickets = v.getTicketsLista();
-                try {
-                    for (Tickets t : listaTickets) {
-                        Pasajero p = Controladores.getPjc().findPasajero(t.getDniPasajero());
-                        p.getTicketLista().remove(t);
-                        Controladores.getTjc().destroy(t.getNumeroTicket());
-                    }
-                } catch (Exception e) {
-                }
-                Controladores.getVjc().destroy(v.getCodigoVuelo());
+    void eliminar(Aeropuerto findAeropuerto) throws NonexistentEntityException, Exception {
+        // Eliminar vuelo
+        Set<Long> listaVuelos = findAeropuerto.getListaVuelos();
+        if (listaVuelos != null) {
+        for (Long v : listaVuelos) {
+            Vuelo vAux = Controladores.getVjc().findVuelo(v);
+            Set<Long> listaTickets = vAux.getTicketsLista();
+            // Eliminar ticket
+            if (listaTickets != null) {
+            for (Long t : listaTickets) {
+                Tickets tAux = Controladores.getTjc().findTickets(t);
+                JTextField aux = new JTextField();
+                aux.setText(tAux.getNumeroTicket().toString());
+                Vista.ticket().eliminar(aux);
             }
-        } catch (Exception e) {
+                listaTickets.clear();
+            }
+            Vista.vuelo().eliminar(vAux);
         }
-        try {
-        Controladores.getAjc().destroy(findAeropuerto.getCodigoAeropuerto());}
-        catch (Exception e) {}
+            listaVuelos.clear();
+        }
+        Controladores.getAjc().destroy(findAeropuerto.getCodigoAeropuerto());
+    }
+
+    /**
+     *
+     * @param findAeropuerto the value of findAeropuerto
+     * @param jTextFieldAMCodigoAeropuerto the value of
+     * jTextFieldAMCodigoAeropuerto
+     * @param jTextFieldAMPais the value of jTextFieldAMPais
+     * @param jTextFieldAMCiudad the value of jTextFieldAMCiudad
+     */
+    public void modificar(Aeropuerto a, JTextField codigo, JTextField pais, JTextField ciudad) throws NonexistentEntityException, Exception {
+        if (a != null) {
+            a.setPais(pais.getText());
+            a.setCiudad(ciudad.getText());
+            Controladores.getAjc().edit(a);
+        }
     }
 }

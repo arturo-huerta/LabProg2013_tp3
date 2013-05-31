@@ -5,8 +5,7 @@
 package TP3.aerolinea;
 
 import TP3.aerolinea.controller.exceptions.NonexistentEntityException;
-import java.util.List;
-import javax.swing.JOptionPane;
+import TP3.aerolinea.controller.exceptions.PreexistingEntityException;
 import javax.swing.JTextField;
 
 /**
@@ -15,73 +14,84 @@ import javax.swing.JTextField;
  */
 class VTicket {
 
-    void crear(JTextField codigoVuelo, JTextField numeroTicket, JTextField dni) {
+    void crear(JTextField codigoVuelo, JTextField numeroTicket, JTextField dni) throws PreexistingEntityException, Exception {
 
-        try {
-            Pasajero p = Controladores.getPjc().findPasajero(Long.parseLong(dni.getText()));
-            Vuelo v = Controladores.getVjc().findVuelo(Long.parseLong(codigoVuelo.getText()));
-            if (p == null ||  v == null) {
-                throw new Exception();
-            }
-            // Crea el ticket solamente si: el pasajero existe, el vuelo existe
-            Tickets t = new Tickets();
-            t.setCodigoVuelo(Long.parseLong(codigoVuelo.getText()));
-            t.setNumeroTicket(Long.parseLong(numeroTicket.getText()));
-            t.setDniPasajero(p.getDNI());
-            Controladores.getTjc().create(t);
-            p.getTicketLista().add(t);
-            v.getTicketsLista().add(t);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,
-                    "Error: confirme que los datos sean correctos");
-        }
-
+        Pasajero p = Controladores.getPjc().findPasajero(Long.parseLong(dni.getText()));
+        Vuelo v = Controladores.getVjc().findVuelo(Long.parseLong(codigoVuelo.getText()));
+        // Crea el ticket solamente si: el pasajero existe, el vuelo existe
+        Tickets t = new Tickets();
+        t.setCodigoVuelo(Long.parseLong(codigoVuelo.getText()));
+        t.setNumeroTicket(Long.parseLong(numeroTicket.getText()));
+        t.setDniPasajero(Long.parseLong(dni.getText()));
+        Controladores.getTjc().create(t);
+        p.getTicketLista().add(t.getNumeroTicket());
+        Controladores.getPjc().edit(p);
+        v.getTicketsLista().add(t.getNumeroTicket());
+        Controladores.getVjc().edit(v);
     }
 
     void imprimir(JTextField numeroTicket, JTextField codigoAeropuertoPartida, JTextField codigoAeropuertoLlegada, JTextField codigoVuelo, JTextField dni, Tickets t) {
         numeroTicket.setText(t.getNumeroTicket().toString());
         Vuelo v = Controladores.getVjc().findVuelo(t.getCodigoVuelo());
-        codigoAeropuertoPartida.setText(v.getCodigoAeropuertoPartida().toString());
-        codigoAeropuertoLlegada.setText(v.getCodigoAeropuertoLlegada().toString());
+        if ((codigoAeropuertoPartida != null) && (codigoAeropuertoLlegada != null)) {
+            codigoAeropuertoPartida.setText(v.getCodigoAeropuertoPartida().toString());
+            codigoAeropuertoLlegada.setText(v.getCodigoAeropuertoLlegada().toString());
+        }
         codigoVuelo.setText(t.getCodigoVuelo().toString());
         dni.setText(t.getDniPasajero().toString());
     }
 
-    void modificar(JTextField numeroTicket, JTextField codigoVuelo, JTextField dni) throws NonexistentEntityException, Exception {
-        Tickets t = Controladores.getTjc().findTickets(Long.parseLong(numeroTicket.getText()));
-        if (t != null) {
-            // Eliminarlo de la lista de tickets del vuelo anterior
-            Vuelo v = Controladores.getVjc().findVuelo(t.getCodigoVuelo());
-            v.getTicketsLista().remove(t);
-            // Eliminarlo de la lista de tickets del pasajero anterior
-            Pasajero p = Controladores.getPjc().findPasajero(t.getDniPasajero());
-            p.getTicketLista().remove(t);
-            // Asignar nuevos datos, recibidos de la GUI
-            t.setCodigoVuelo(Long.parseLong(codigoVuelo.getText()));
-            t.setDniPasajero(Long.parseLong(dni.getText()));
-            p = Controladores.getPjc().findPasajero(t.getDniPasajero());
-            p.getTicketLista().add(t);
-            v = Controladores.getVjc().findVuelo(t.getCodigoVuelo());
-            v.getTicketsLista().add(t);
-            // Actualizar datos del ticket
-            Controladores.getTjc().edit(t);
-        }
-        
+    /**
+     *
+     * @param busqueda the value of busqueda
+     * @param numeroTicket the value of numeroTicket
+     * @param codigoVuelo the value of codigoVuelo
+     * @param dni the value of dni
+     * @throws NonexistentEntityException
+     * @throws Exception
+     */
+    void modificar(JTextField busqueda, JTextField numeroTicket, JTextField codigoVuelo, JTextField dni) throws NonexistentEntityException, Exception {
+        Tickets t = Controladores.getTjc().findTickets(Long.parseLong(busqueda.getText()));
+        // Eliminarlo de la lista de tickets del vuelo anterior
+        Vuelo v = Controladores.getVjc().findVuelo(t.getCodigoVuelo());
+        v.getTicketsLista().remove(t.getNumeroTicket());
+        Controladores.getVjc().edit(v);
+        // Eliminarlo de la lista de tickets del pasajero anterior
+        Pasajero p = Controladores.getPjc().findPasajero(t.getDniPasajero());
+        p.getTicketLista().remove(t.getNumeroTicket());
+        Controladores.getPjc().edit(p);
+        // Asignar nuevos datos, recibidos de la GUI
+        t.setCodigoVuelo(Long.parseLong(codigoVuelo.getText()));
+        t.setDniPasajero(Long.parseLong(dni.getText()));
+        Controladores.getTjc().edit(t);
+        p = Controladores.getPjc().findPasajero(t.getDniPasajero());
+        p.getTicketLista().add(t.getNumeroTicket());
+        Controladores.getPjc().edit(p);
+        v = Controladores.getVjc().findVuelo(t.getCodigoVuelo());
+        v.getTicketsLista().add(t.getNumeroTicket());
+        Controladores.getVjc().edit(v);
+        // Actualizar datos del ticket
+
     }
 
-    void eliminar(JTextField numeroTicket) throws NonexistentEntityException {
+    void eliminar(JTextField numeroTicket) throws NonexistentEntityException, Exception {
         Tickets ticket = Controladores.getTjc().findTickets(Long.parseLong(numeroTicket.getText()));
-        if ( ticket != null) {
-            // Si el ticket existe, eliminarlo de los tickets del pasajero y luego de la lista de tickets del vuelo
-            Pasajero pasajero = Controladores.getPjc().findPasajero(ticket.getDniPasajero());
-            List<Tickets> ticketLista = pasajero.getTicketLista();
-            ticketLista.remove(ticket);
-            Vuelo vuelo = Controladores.getVjc().findVuelo(ticket.getCodigoVuelo());
-            vuelo.getTicketsLista().remove(ticket);
-            Controladores.getTjc().destroy(ticket.getNumeroTicket());
-        } else {
-            JOptionPane.showMessageDialog(null,
-                    "El ticket no existe.");
-        }
+        // Si el ticket existe, eliminarlo de los tickets del pasajero y luego de la lista de tickets del vuelo
+        /*       Pasajero pasajero = Controladores.getPjc().findPasajero(ticket.getDniPasajero());
+         * pasajero.getTicketLista().remove(ticket);
+         * Controladores.getPjc().edit(pasajero);
+         * Vuelo vuelo = Controladores.getVjc().findVuelo(ticket.getCodigoVuelo());
+         * vuelo.getTicketsLista().remove(ticket);
+         * Controladores.getVjc().edit(vuelo);*/
+        // Sacar clave foranea de vuelo
+        Vuelo v = Controladores.getVjc().findVuelo(ticket.getCodigoVuelo());
+        v.getTicketsLista().remove(ticket.getNumeroTicket());
+        Controladores.getVjc().edit(v);
+        // Sacar clave foranea de pasajero
+        Pasajero p = Controladores.getPjc().findPasajero(ticket.getDniPasajero());
+        p.getTicketLista().remove(ticket.getNumeroTicket());
+        Controladores.getPjc().edit(p);
+        
+        Controladores.getTjc().destroy(ticket.getNumeroTicket());
     }
 }
