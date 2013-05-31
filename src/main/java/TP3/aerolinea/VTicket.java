@@ -23,11 +23,11 @@ class VTicket {
         t.setCodigoVuelo(Long.parseLong(codigoVuelo.getText()));
         t.setNumeroTicket(Long.parseLong(numeroTicket.getText()));
         t.setDniPasajero(Long.parseLong(dni.getText()));
-        Controladores.getTjc().create(t);
         p.getTicketLista().add(t.getNumeroTicket());
         Controladores.getPjc().edit(p);
         v.getTicketsLista().add(t.getNumeroTicket());
         Controladores.getVjc().edit(v);
+        Controladores.getTjc().create(t);
     }
 
     void imprimir(JTextField numeroTicket, JTextField codigoAeropuertoPartida, JTextField codigoAeropuertoLlegada, JTextField codigoVuelo, JTextField dni, Tickets t) {
